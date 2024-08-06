@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block conteudo %}
+<div  class="container-sm" style=" display: flex; justify-content: center;">
+    <a href="{% url 'create_voo' %}">
+        <button type="button" class="btn btn-success">Novo Voo</button>
+    </a>
+</div>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Cód. Vôo</th>
+            <th scope="col">Origem</th>
+            <th scope="col">Destino</th>
+            <th scope="col">Partida</th>
+            <th scope="col">Chegada</th>
+            <th scope="col">Assentos Disponíveis</th>
+            <th scope="col">Preço</th>
+            <th scope="col">Companhia</th>
+            <th scope="col">Status</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for voo in voos %}
+        <tr>
+            <th scope="row">{{voo.cod_voo}}</th>
+            <td>{{voo.origem}}</td>
+            <td>{{voo.destino}}</td>
+            <td>{{voo.partida}}</td>
+            <td>{{voo.chegada}}</td>
+            <td>{{voo.assentos_disp}}</td>
+            <td>R$ {{voo.preco}}</td>
+            <td>{{voo.companhia}}</td>
+            <td>{{voo.status}}</td>
+            <td>
+                <a href="{% url 'tripulacao' voo.id %}"><button id="{{voo.id}}" class="btn btn-secondary">Passageiros</button></a>
+                <a href="{% url 'update_voo' voo.id %}"><button id="{{voo.id}}" class="btn btn-primary">Editar</button></a>
+                <a href="{% url 'delete_voo' voo.id %}"><button id="{{voo.id}}" type="button" class="btn btn-danger">Excluir</button></a>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

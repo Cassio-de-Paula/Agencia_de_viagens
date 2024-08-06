@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block conteudo %}
+<div class="container-sm" style="display: flex; justify-content: center;">
+    <a href="{% url 'list_passageiros' %}">
+        <button type="button" class="btn btn-secondary m-2">Voltar</button>
+    </a>
+</div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Cód. Vôo</th>
+            <th scope="col">Origem</th>
+            <th scope="col">Destino</th>
+            <th scope="col">Partida</th>
+            <th scope="col">Chegada</th>
+            <th scope="col">Preço</th>
+            <th scope="col">Companhia</th>
+            <th scope="col">Status</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for voo in lista_voos %}
+        <tr>
+            <th scope="row">{{voo.cod_voo}}</th>
+            <td>{{voo.origem}}</td>
+            <td>{{voo.destino}}</td>
+            <td>{{voo.partida}}</td>
+            <td>{{voo.chegada}}</td>
+            <td>R$ {{voo.preco}}</td>
+            <td>{{voo.companhia}}</td>
+            <td>{{voo.status}}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

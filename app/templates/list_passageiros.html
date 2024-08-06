@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block conteudo %}
+<div  class="container-sm" style=" display: flex; justify-content: center;">
+    <a href="{% url 'create_passageiro' %}">
+        <button type="button" class="btn btn-success">Novo Passageiro</button>
+    </a>
+</div>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Cód</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Nacionalidade</th>
+            <th scope="col">Email</th>
+            <th scope="col">Telefone</th>
+            <th scope="col">Identidade</th>
+            <th scope="col">Passaporte</th>
+            <th scope="col">Endereço</th>
+            <th scope="col">Opções</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for passageiro in passageiros %}
+        <tr>
+            <th scope="row">{{passageiro.cod}}</th>
+            <td>{{passageiro.nome}}</td>
+            <td>{{passageiro.nacionalidade}}</td>
+            <td>{{passageiro.email}}</td>
+            <td>{{passageiro.telefone}}</td>
+            <td>{{passageiro.identidade}}</td>
+            <td>{{passageiro.passaporte}}</td>
+            <td>{{passageiro.endereco}}</td>
+            <td>
+                <a href="{% url 'history_voos' passageiro.id %}"><button id="{{passageiro.id}}" class="btn btn-secondary">Vôos</button></a>
+                <a href="{% url 'update_passageiro' passageiro.id %}"><button id="{{passageiro.id}}" class="btn btn-primary">Editar</button></a>
+                <a href="{% url 'delete_passageiro' passageiro.id %}"><button id="{{passageiro.id}}" type="button" class="btn btn-danger">Excluir</button></a>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block conteudo %}
+<div class="container-sm" style="display: grid; justify-content: center; align-items: center;">
+    <h2 style="display: flex; justify-content: center;">Deseja excluir este Vôo?</h2>
+    <div style="display: grid; justify-content: center; align-items: center;">
+        <h3 style="display: flex; justify-content: center;">Cód - {{voo.cod_voo}}</h3><br>
+        <hr>
+        <h3 style="display: flex; justify-content: center;">{{voo.origem}} ---> {{voo.destino}}</h3><br>
+        <hr>
+        <h3 style="display: flex; justify-content: center;">{{voo.status}}</h3>
+    </div>
+    <h6 style="display: flex; justify-content: center;">Esta ação é irreversível.</h6>
+
+    <form id="voo" action="{% url 'delete_voo' voo.id%}" method="post">
+        {% csrf_token %}
+        <input type="text" hidden value="{{voo.id}}" name="voo_id" id="voo_id">
+        <div style="display: flex; justify-content: center;">
+            <button type="submit" class="btn btn-danger m-2" form="voo">Excluir</button>
+            <button type="button" class="btn btn-secondary m-2">Voltar</button>
+            </a>
+        </div>
+    </form>
+</div>
+{% endblock %}

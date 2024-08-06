@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block conteudo %}
+<div class="container-sm">
+    <h2 style="display: flex; justify-content: center;">Editar Vôo</h2>
+    <form id="voo" action="{% url 'update_voo' voo.id%}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div style="display: flex; justify-content: center;">
+            <button type="submit" class="btn btn-primary m-2" form="voo">Enviar</button>
+            <button type="reset" class="btn btn-danger m-2" form="voo">Limpar</button>
+            <a href="{% url 'list_voos' %}">
+                <button type="button" class="btn btn-secondary m-2">Voltar</button>
+            </a>
+        </div>
+    </form>
+</div>
+{% endblock %}
